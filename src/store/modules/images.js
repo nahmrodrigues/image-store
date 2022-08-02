@@ -18,8 +18,11 @@ const mutations = {
 const actions = {
   fetchImages: async ({ rootState, commit }) => {
     const { token } = rootState.auth;
-    const images = await fetchImages(token);
-    commit('setImages', images);
+
+    if(token) {
+      const images = await fetchImages(token);
+      commit('setImages', images);
+    }
   },
   uploadImages: async({ rootState }, images) => {
     const { token } = rootState.auth;

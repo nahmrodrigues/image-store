@@ -22,14 +22,20 @@
   </div>
 </template> 
 
-<script>
-import { mapActions, mapGetters } from 'vuex'
+<script setup>
+import store from '../store'
+import { computed } from 'vue'
 
-export default {
-  name: 'AppHeader',
-  computed: mapGetters(['isLoggedIn']),
-  methods: mapActions(['login', 'logout'])
+const isLoggedIn = computed(() => store.getters['isLoggedIn'])
+
+const login = () => {
+  store.dispatch('login')
 }
+
+const logout = () => {
+  store.dispatch('logout');
+}
+
 </script>
 
 <style scoped>

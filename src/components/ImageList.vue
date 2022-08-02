@@ -5,17 +5,17 @@
   <h2 v-else>Log in to get started!</h2>
 </template> 
 
-<script>
-import { mapActions, mapGetters } from 'vuex'
+<script setup>
+import store from '../store';
+import { computed, onMounted } from 'vue'
 
-export default {
-  name: 'ImageList',
-  computed: mapGetters(['allImages', 'isLoggedIn']),
-  methods: mapActions(['fetchImages']),
-  created() {
-    this.fetchImages();
-  }
-}
+const allImages = computed(() => store.getters['allImages']);
+const isLoggedIn = computed(() => store.getters['isLoggedIn']);
+
+onMounted(() => {
+  store.dispatch('fetchImages');
+})
+
 </script>
 
 <style scoped>
