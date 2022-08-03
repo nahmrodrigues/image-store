@@ -1,12 +1,11 @@
 import qs from 'qs'
 import axios from 'axios'
 
-const CLIENT_ID = 'a955f19b5867dcd'
 const API_URL = 'https://api.imgur.com'
 
 export const login = () => {
   const querystring = {
-    client_id: CLIENT_ID,
+    client_id: process.env.VUE_APP_CLIENT_ID,
     response_type: 'token'
   }
 
