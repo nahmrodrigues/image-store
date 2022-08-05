@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import { BaseLayout } from './layouts/BaseLayout.vue';
+import BaseLayout from './layouts/BaseLayout.vue';
 </script>

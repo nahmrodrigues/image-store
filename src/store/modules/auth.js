@@ -26,12 +26,14 @@ const actions = {
     commit('setToken', query.access_token)
     window.localStorage.setItem('imgur_token', query.access_token);
 
-    router.push('/');
+    router.push('/images');
   },
   
   logout: ({ commit }) => {
     commit('setToken', null);
     window.localStorage.removeItem('imgur_token');
+
+    router.push('/login')
   }
 };
 

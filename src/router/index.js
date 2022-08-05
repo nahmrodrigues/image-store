@@ -1,28 +1,41 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import BaseLayout from '../layouts/BaseLayout.vue';
+import store from '../store';
+
+import ImagesList from '../components/ImageList.vue'
+import UploadForm from '../components/UploadForm.vue'
+import AuthHandler from '../components/AuthHandler.vue'
+import NotAuthenticated from '../components/NotAuthenticated.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => BaseLayout,
-    children: []
-  },
-  {
-    path: '/images',
-    name: 'images',
-    component: () => import('../components/ImageList.vue')
-  },
-  {
-    path: '/upload',
-    name: 'upload',
-    component: () => import('../components/UploadForm.vue')
-  },
-  {
-    path: '/oauth2/callback',
-    name: 'authCallback',
-    component: () => import('../components/AuthHandler.vue')
+    redirect: () => {
+      if(store.getters['isLoggedIn']) return 'images'
+      return 'login'
+    },
+    children: [
+      {
+        path: '/login',
+        name: 'login',
+        component: NotAuthenticated
+      },
+      {
+        path: '/images',
+        name: 'images',
+        component: ImagesList
+      },
+      {
+        path: '/upload',
+        name: 'upload',
+        component: UploadForm
+      },
+      {
+        path: '/oauth2/callback',
+        component: AuthHandler
+      }
+    ]
   }
 ];
 
