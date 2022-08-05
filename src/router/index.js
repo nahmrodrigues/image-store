@@ -1,21 +1,28 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import ImageList from '../components/ImageList.vue';
-import UploadForm from '../components/UploadForm.vue';
-import AuthHandler from '../components/AuthHandler.vue';
+import BaseLayout from '../layouts/BaseLayout.vue';
 
 const routes = [
   {
     path: '/',
-    component: ImageList
+    name: 'home',
+    component: () => BaseLayout,
+    children: []
+  },
+  {
+    path: '/images',
+    name: 'images',
+    component: () => import('../components/ImageList.vue')
   },
   {
     path: '/upload',
-    component: UploadForm
+    name: 'upload',
+    component: () => import('../components/UploadForm.vue')
   },
   {
     path: '/oauth2/callback',
-    component: AuthHandler
+    name: 'authCallback',
+    component: () => import('../components/AuthHandler.vue')
   }
 ];
 

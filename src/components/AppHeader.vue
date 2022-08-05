@@ -1,26 +1,20 @@
 <template>
-  <div class="ui secondary pointing menu">
-    <router-link to="/" class="active item">
-      Image Store
-    </router-link>
-    <div class="right menu">
-      <div v-if="isLoggedIn" class="horizontal">
-        <router-link to="/"  class="ui item">
-          Galleries
-        </router-link>
-        <router-link to="/upload"  class="ui item">
-          Upload
-        </router-link>
-        <a href="#" class="ui item" @click="logout">
-          Logout
-        </a>
-      </div>
-      <a v-else href="#" class="ui item" @click="login">
-        Login
-      </a>
-    </div>
-  </div>
-</template> 
+  <q-header elevated>
+    <q-toolbar>
+      <q-icon name="image" :size="'md'" />
+
+      <q-toolbar-title>IMAGE STORE</q-toolbar-title>
+
+      <q-btn v-if="isLoggedIn" flat round dense icon="logout" label="Logout" @click="logout"/>
+      <q-btn v-else flat round dense icon="login" label="Login" @click="login"/>
+    </q-toolbar>
+
+    <q-tabs v-model="tab" v-if="isLoggedIn">
+      <q-route-tab :to="{name: 'images'}" exact name="images" label="Images"/>
+      <q-route-tab :to="{name: 'upload'}" exact name="upload" label="Upload"/>
+    </q-tabs>
+  </q-header>
+</template>
 
 <script setup>
 import store from '../store'

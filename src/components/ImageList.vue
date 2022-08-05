@@ -20,7 +20,7 @@ onMounted(() => {
 
 <style scoped>
 .images-container {
-  column-count: 2;
+  column-count: 3;
   column-gap: 0;
 }
 

@@ -1,10 +1,7 @@
 <template>
-  <AppHeader/>
-  <div class="ui container">
-    <router-view></router-view>
-  </div>
+  <BaseLayout/>
 </template>
 
 <script setup>
-import AppHeader from './components/AppHeader.vue'
+import { BaseLayout } from './layouts/BaseLayout.vue';
 </script>
