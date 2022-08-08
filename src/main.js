@@ -2,10 +2,13 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import store from './store';
 import router from './router';
-import { Quasar } from 'quasar'
-import quasarUserOptions from './quasar-user-options'
 
-createApp(App).use(Quasar, quasarUserOptions)
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+
+
+createApp(App)
+  .use(ElementPlus)
   .use(store)
   .use(router)
   .mount('#app')

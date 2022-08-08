@@ -6,12 +6,16 @@
       accept="image/*"
       @change="uploadImages($event.target.files)"
     />
-    <span>Drag files here!</span>
+    <span>
+      <el-icon class="el-icon--upload" :size="50"><upload-filled /></el-icon>
+      <p>Drag files here!</p>
+    </span>
   </div>
 </template> 
 
 <script setup>
 import store from '../store'
+import { UploadFilled } from '@element-plus/icons-vue'
 
 const uploadImages = (images) => {
   store.dispatch('uploadImages', images)
@@ -22,7 +26,7 @@ const uploadImages = (images) => {
 .dropper {
   height: 30vh;
   width: 60vw;
-  border: 2px dashed black;
+  border: 1px dashed grey;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -40,5 +44,12 @@ input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
+}
+
+span { 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>
